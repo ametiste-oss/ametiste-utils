@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'spring-boot'
+
+dependencies {
+
+
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+
+    compile "org.springframework.integration:spring-integration-core:${integrationVersion}"
+    compile "org.springframework.integration:spring-integration-http:${integrationVersion}"
+    compile "org.springframework.integration:spring-integration-java-dsl:1.0.2.RELEASE"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom {
+                project {
+                    dependencyManagement {
+                        dependencies {
+                            dependency {
+                                groupId "org.springframework.boot"
+                                artifactId "spring-boot-dependencies"
+                                version "${springBootVersion}"
+                                type "pom"
+                                scope "import"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+uploadArchives.dependsOn build
