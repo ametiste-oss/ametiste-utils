@@ -1,3 +1,4 @@
 rootProject.name = 'ametiste-utils'
 include 'test-signals'
+include 'test-signals-xml'
 

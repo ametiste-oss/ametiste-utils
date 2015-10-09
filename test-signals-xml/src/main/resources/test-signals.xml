@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:int-http="http://www.springframework.org/schema/integration/http"
+	xmlns:int="http://www.springframework.org/schema/integration"
+    xsi:schemaLocation="
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+		http://www.springframework.org/schema/integration/http http://www.springframework.org/schema/integration/http/spring-integration-http-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		">
+
+    <int-http:inbound-gateway request-channel="signalsInbound"
+                              reply-channel="signalsOutbound" 
+                              supported-methods="GET,POST,PUT,HEAD,DELETE,OPTIONS"
+                              path="{code:\d\d\d}"
+                              >
+        <int-http:header name="http_statusCode" expression="#pathVariables.code" />
+    </int-http:inbound-gateway>
+
+
+    <int:transformer input-channel="signalsInbound" output-channel="signalsOutbound" expression="''"/>
+
+    <int:channel id="signalsInbound"/>
+    <int:channel id="signalsOutbound"/>
+</beans>

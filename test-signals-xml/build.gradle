@@ -1,0 +1,6 @@
+dependencies {
+
+
+    compile "org.springframework.integration:spring-integration-core:${integrationVersion}"
+    compile "org.springframework.integration:spring-integration-http:${integrationVersion}"
+}
