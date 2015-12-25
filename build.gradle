@@ -1,3 +1,13 @@
+buildscript {
+    repositories { jcenter() }
+
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-aggregate-javadocs-plugin:2.2.+'
+    }
+}
+
+apply plugin: 'nebula-aggregate-javadocs'
+
 
 allprojects {
     version = "0.1.0-SNAPSHOT"
@@ -5,15 +15,24 @@ allprojects {
 
 subprojects {
 
+    apply plugin: 'groovy'
     apply plugin: 'maven'
     apply plugin: 'java'
+    apply plugin: 'jacoco'
 
-    group = 'org.ametiste'
+    apply from: "https://raw.githubusercontent.com/ametiste-oss/ametiste-bintray-gradle/master/bintray-ext-ame-oss.gradle"
+    apply from: "https://raw.githubusercontent.com/ametiste-oss/ametiste-bintray-gradle/master/bintray-ext.gradle"
+
+    apply plugin: 'maven-publish'
+
+    group = 'org.ametiste.utils'
 
     ext {
 
         integrationVersion = "4.2.0.RELEASE"
         springBootVersion = "1.2.5.RELEASE"
+        springVersion = "4.2.4.RELEASE"
+        bintray_vcsUrl = 'https://github.com/ametiste-oss/ametiste-utils.git'
 
     }
 
@@ -72,7 +91,7 @@ subprojects {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.4'
+    gradleVersion = '2.7'
 }
 
 configure(rootProject) {
