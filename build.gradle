@@ -30,6 +30,7 @@ subprojects {
     ext {
 
         integrationVersion = "4.2.0.RELEASE"
+        ameMetricVersion="0.2.0-RELEASE"
         springBootVersion = "1.2.5.RELEASE"
         springVersion = "4.2.4.RELEASE"
         bintray_vcsUrl = 'https://github.com/ametiste-oss/ametiste-utils.git'
@@ -43,6 +44,7 @@ subprojects {
 
     repositories {
         mavenCentral()
+        jcenter()
     }
 
     dependencies {

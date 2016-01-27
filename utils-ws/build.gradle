@@ -9,8 +9,7 @@ description = "Ametiste WS utils."
 dependencies {
 
     compile "org.springframework:spring-web:${springVersion}"
+    compile "org.ametiste.metrics:metrics-service:${ameMetricVersion}"
 
-   // runtime 'cglib:cglib:2.2.2'
-
-   // testCompile "org.springframework:spring-test:${springVersion}"
+    testCompile "org.ametiste.metrics:metrics-service-mock:${ameMetricVersion}"
 }
