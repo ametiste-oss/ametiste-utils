@@ -30,8 +30,8 @@ public class SimpleExternalServiceReader<T> implements ExternalServiceReader {
 			result = restTemplate.getForObject(sourceURI, classType, ids);
 		} catch (Exception e) {
 
-			if (logger.isErrorEnabled())
-				logger.error("External Source quering error: ", e);
+			if (logger.isDebugEnabled())
+				logger.debug("External Source quering error: ", e);
 			throw new ExternalServiceRuntimeException("External Source quering error: ", e);
 		}
 
